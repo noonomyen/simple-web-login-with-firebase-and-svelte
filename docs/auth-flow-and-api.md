@@ -34,9 +34,9 @@ sequenceDiagram
 
 ```json
 {
-    username: "string",
-    email: "string",
-    password: "string"
+    "username": "string",
+    "email": "string",
+    "password": "string"
 }
 ```
 
@@ -68,8 +68,8 @@ sequenceDiagram
 
 ```json
 {
-    email: "string",
-    password: "string"
+    "email": "string",
+    "password": "string"
 }
 ```
 
