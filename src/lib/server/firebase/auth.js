@@ -109,10 +109,13 @@ export async function Login(email, passowrd) {
  */
 export async function Logout(token) {
     try {
-        let payload = await appAdmin.auth().verifyIdToken(token);
+        let payload = await appAdmin.auth().verifyIdToken(token, true);
         if (payload) {
             if (payload.uid) {
                 const current_time = new Date().getTime();
+                if ((payload.exp - (current_time / 1000)) < 0) {
+                    return false;
+                }
                 await adminDB.ref("logs/auth/logout").push({
                     time: current_time,
                     uid: payload.uid
@@ -133,10 +136,13 @@ export async function Logout(token) {
  */
 export async function LogoutAll(token) {
     try {
-        let payload = await appAdmin.auth().verifyIdToken(token);
+        let payload = await appAdmin.auth().verifyIdToken(token, true);
         if (payload) {
             if (payload.uid) {
                 const current_time = new Date().getTime();
+                if ((payload.exp - (current_time / 1000)) < 0) {
+                    return false;
+                }
                 await appAdmin.auth().revokeRefreshTokens(payload.uid);
                 await adminDB.ref("logs/auth/logout-all").push({
                     time: current_time,
