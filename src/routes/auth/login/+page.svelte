@@ -107,6 +107,8 @@
                         ErrorMessage("This email address could not be found");
                     } else if (data.message == "account_suspended") {
                         ErrorMessage("Your account is suspended");
+                    } else if (data.message == "too_many_requests") {
+                        ErrorMessage("Too many request");
                     } else {
                         ErrorMessage(`Unknown error: ${data.message}`);
                     }
