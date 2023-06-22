@@ -85,7 +85,7 @@ export async function Login(email, passowrd) {
             await signOut(auth);
             await adminDB.ref("logs/auth/login").push({
                 time: current_time,
-                email: uid
+                uid: uid
             });
             return [null, token, username];
         } else {
