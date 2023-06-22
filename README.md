@@ -2,79 +2,10 @@
 
 ---
 
-## Setup
+## Documents
 
-```
-npm install
-```
-
-### Firebase emulators
-
-```
-npx firebase emulators:start
-```
-
-### Build
-
-```
-npm run build
-node ./build/index.js
-```
-
-### Start
-
-```
-npm run dev
-```
-
----
-
-## Environment config
-
-### Emulator
-
-```
-# PowerShell
-$env:FIREBASE_AUTH_EMULATOR_HOST="127.0.0.1:9099"
-
-# Bash
-export FIREBASE_AUTH_EMULATOR_HOST="127.0.0.1:9099"
-```
-
-#### .env
-
-```
-VITE_FirebaseConfig={"apiKey":<> ,"projectId": <>, "databaseURL": <>}
-VITE_Production=false
-```
-
-### Production
-
-#### .env
-
-```
-VITE_FirebaseConfig={"apiKey":<> ,"projectId": <>, "databaseURL": <>}
-VITE_FirebaseAdminServiceAccountKey=<json service account key (string)>
-VITE_Production=true
-```
-
----
-
-## API
-
-```
-api
-└─── auth
-     ├─── login
-     ├─── logout
-     ├─── logout-all
-     ├─── register
-     ├─── resend-email-verify
-     ├─── send-email-reset-password
-     └─── forgot
-```
-
----
+- [Authentication Flow and API](docs/auth-flow-and-api.md)
+- [Authentication Log Database Structure](docs/auth-log-db-structure.md)
 
 ## Pages
 
@@ -90,15 +21,53 @@ api
 
 ---
 
-## Database Structure
+## Setup
 
 ```
-logs
-└─── auth
-     ├─── register
-     ├─── login
-     ├─── logout
-     ├─── logout-all
-     ├─── resend-email-verify
-     └─── send-email-reset-password
+npm install
+```
+
+### Firebase emulators
+
+```
+npx firebase emulators:start
+```
+
+### Start
+
+```
+npm run dev
+```
+
+### Build (adapter-node)
+
+```
+npm run build
+```
+
+---
+
+## Environment configuration
+
+### Emulator
+
+```
+# PowerShell
+$env:FIREBASE_AUTH_EMULATOR_HOST="127.0.0.1:9099"
+
+# Bash
+export FIREBASE_AUTH_EMULATOR_HOST="127.0.0.1:9099"
+```
+
+```
+VITE_FirebaseConfig={"apiKey":<> ,"projectId": <>, "databaseURL": <>}
+VITE_Production=false
+```
+
+### Production
+
+```
+VITE_FirebaseConfig={"apiKey":<> ,"projectId": <>, "databaseURL": <>}
+VITE_FirebaseAdminServiceAccountKey=< Json service account key >
+VITE_Production=true
 ```
