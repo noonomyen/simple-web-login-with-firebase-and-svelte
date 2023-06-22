@@ -208,9 +208,10 @@ export async function SendEmail_VerifyEmail(email) {
         await signInWithCustomToken(auth, custom_token);
         if (auth.currentUser) {
             await sendEmailVerification(auth.currentUser);
+            await signOut(auth);
             await adminDB.ref("logs/auth/resend-email-verify").push({
                 time: current_time,
-                uid: auth.currentUser.uid
+                uid: uid
             });
             return null;
         }
@@ -241,9 +242,10 @@ export async function SendEmail_ResetPassword(email) {
         await signInWithCustomToken(auth, custom_token);
         if (auth.currentUser) {
             await sendPasswordResetEmail(auth, email);
+            await signOut(auth);
             await adminDB.ref("logs/auth/send-email-reset-password").push({
                 time: current_time,
-                uid: auth.currentUser.uid
+                uid: uid
             });
             return null;
         }
